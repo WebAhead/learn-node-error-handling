@@ -122,7 +122,7 @@ fs.readFile("incorrect-path.html", (error, file) => {
 });
 ```
 
-### Challenge
+### Challenge
 
 The `/callback` endpoint tries to serve a file that doesn't exist. Don't fix this (it's erroring on purpose as an example).
 
