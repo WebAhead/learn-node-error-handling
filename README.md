@@ -6,7 +6,7 @@ Learn how to handle different kinds of errors in your Node server.
 
 Errors (or "exceptions") stop JavaScript from running. They usually mean something has gone so wrong that the program doesn't know how to continue. This means any code _after_ the line where the error occurred won't run. This is pretty bad in the browser as it can totally break the application for a single user, but on the server it can be much worse. A single running Node server might be responding to hundreds or thousands of requests from different users. If an error stops the code executing it stops for _all of the users_.
 
-<!-- Heroku error page here -->
+![Heroku error page](https://user-images.githubusercontent.com/9408641/77855255-1f049700-71e7-11ea-9bf0-e91c279cb801.png)
 
 ## JavaScript errors
 
