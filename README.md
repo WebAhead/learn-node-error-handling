@@ -159,7 +159,7 @@ fetch("broken")
   });
 ```
 
-It's important to **always\*** have a `.catch` somewhere in a promise chain. Otherwise you'll get an "unhandled rejection", which could crash your program.
+It's important to **always** have a `.catch` somewhere in a promise chain. Otherwise you'll get an "unhandled rejection", which could crash your program.
 
 ### Challenge
 
