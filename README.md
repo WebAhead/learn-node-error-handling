@@ -192,7 +192,7 @@ process.on("unhandledRejection", error => {
 
 The [`unhandledrejection`](https://nodejs.org/api/process.html#process_event_unhandledrejection) event will fire when a promise rejects without being caught, and your callback function will run. We log the error, then tell the Node process to exist with an "exit code" of 1 (which means an error occurred). This will stop your server processing any more requests.
 
-Add this to your `server.js`, then remove your `.catch` from the `promise` handler function. Now when you visit http://localhost:3000/rejection the page request should fail straight away instead of hanging, and you shouldn't see the "unhandled rejection" warning in your terminal.
+Add this to your `server.js`, then remove your `.catch` from the `rejection` handler function. Now when you visit http://localhost:3000/rejection the page request should fail straight away instead of hanging, and you shouldn't see the "unhandled rejection" warning in your terminal.
 
 **Note**: it's always better to handle the promise rejection properly and send an error response. This is a last-ditch strategy because errors always slip through the cracks.
 
