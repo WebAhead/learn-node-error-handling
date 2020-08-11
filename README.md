@@ -89,7 +89,7 @@ You can think of throwing an error as bypassing the rest of the code and jumping
 
 Let's use `try..catch` to handle errors on a Node server.
 
-1. Clone this repo
+1. Clone this repo and run `npm install`
 1. Run `npm run dev` to start the server on http://localhost:3000
 1. Visit http://localhost:3000/try-catch and see the server crash
 1. Use `try..catch` in the `tryCatch` **handler** to catch the error and send a response to the user
