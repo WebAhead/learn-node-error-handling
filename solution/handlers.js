@@ -2,54 +2,45 @@ const fs = require("fs");
 const templates = require("./templates");
 const model = require("./model");
 
-function home(request, response) {
-  response.writeHead(200, { "content-type": "text/html" });
+function home(req, res) {
   const html = templates.home();
-  response.end(html);
+  res.status(200).send(html);
 }
 
-function tryCatch(request, response) {
+function tryCatch(req, res) {
   try {
-    response.writeHead(200, { "content-type": "text/html" });
     const html = templates.tryCatch();
-    response.end(html);
+    res.status(200).send(html);
   } catch (error) {
-    response.writeHead(500, { "content-type": "text/html" });
-    response.end(`<h1>Server error</h1>`);
+    res.status(500).send(`<h1>Server error</h1>`)
   }
 }
 
-function callback(request, response) {
+function callback(req, res) {
   fs.readFile("incorrect-path.html", (error, file) => {
     if (error) {
-      response.writeHead(500, { "content-type": "text/html" });
-      response.end(`<h1>Server error</h1>`);
-    } else {
-      response.writeHead(200, { "content-type": "text/html" });
-      response.end(file);
+      res.status(500).send(`<h1>Server error</h1>`)
+      return
     }
+
+    res.status(200).send(file);
   });
 }
 
-function rejection(request, response) {
-  model
-    .getPosts()
-    .then(posts => {
-      response.writeHead(200, { "content-type": "text/html" });
-      const html = templates.rejection(posts);
-      response.end(html);
-    })
-    .catch(error => {
-      console.error(error);
-      response.writeHead(404, { "content-type": "text/html" });
-      response.end(`<h1>Posts not found</h1>`);
-    });
+function rejection(req, res) {
+  model.getPosts().then(posts => {
+    const html = templates.rejection(posts);
+    res.status(200).send(html);
+  }).catch(error => {
+    console.error(error);
+    response.status(404).send(`<h1>Posts not found</h1>`);
+  });
 }
 
-function missing(request, response) {
-  response.writeHead(404, { "content-type": "text/html" });
+function missing(req, res) {
   const html = templates.missing();
-  response.end(html);
+  res.status(404).send(html);
 }
 
 module.exports = { home, tryCatch, callback, rejection, missing };
+

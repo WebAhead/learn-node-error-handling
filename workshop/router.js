@@ -1,18 +1,11 @@
+const express = require('express');
+const router = express.Router();
 const handlers = require("./handlers");
 
-function router(request, response) {
-  const url = request.url;
-  if (url === "/") {
-    handlers.home(request, response);
-  } else if (url === "/try-catch") {
-    handlers.tryCatch(request, response);
-  } else if (url === "/callback") {
-    handlers.callback(request, response);
-  } else if (url === "/rejection") {
-    handlers.rejection(request, response);
-  } else {
-    handlers.missing(request, response);
-  }
-}
+router.get('/', handlers.home)
+router.get('/try-catch', handlers.tryCatch)
+router.get('/callback', handlers.callback)
+router.get('/rejection', handlers.rejection)
+router.use(handlers.missing)
 
 module.exports = router;

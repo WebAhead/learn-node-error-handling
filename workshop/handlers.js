@@ -2,37 +2,32 @@ const fs = require("fs");
 const templates = require("./templates");
 const model = require("./model");
 
-function home(request, response) {
-  response.writeHead(200, { "content-type": "text/html" });
+function home(req, res) {
   const html = templates.home();
-  response.end(html);
+  res.status(200).send(html);
 }
 
-function tryCatch(request, response) {
-  response.writeHead(200, { "content-type": "text/html" });
+function tryCatch(req, res) {
   const html = templates.tryCatch();
-  response.end(html);
+  res.status(200).send(html);
 }
 
-function callback(request, response) {
+function callback(req, res) {
   fs.readFile("incorrect-path.html", (error, file) => {
-    response.writeHead(200, { "content-type": "text/html" });
-    response.end(file);
+    res.status(200).send(file);
   });
 }
 
-function rejection(request, response) {
+function rejection(req, res) {
   model.getPosts().then(posts => {
-    response.writeHead(200, { "content-type": "text/html" });
     const html = templates.rejection(posts);
-    response.end(html);
+    res.status(200).send(html);
   }).catch;
 }
 
-function missing(request, response) {
-  response.writeHead(404, { "content-type": "text/html" });
+function missing(req, res) {
   const html = templates.missing();
-  response.end(html);
+  res.status(404).send(html);
 }
 
 module.exports = { home, tryCatch, callback, rejection, missing };
